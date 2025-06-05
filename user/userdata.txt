@@ -1,0 +1,10 @@
+{"name":"ddvd","surname":"zsdcv","email":"mechanicallyours22@gmail.com","gender":"male"}
+
+----- New Entry -----
+{
+  "name": "Akash",
+  "surname": "Duttaa",
+  "email": "mechanicallyours22@gmail.com",
+  "gender": "male"
+}
+----------------------
