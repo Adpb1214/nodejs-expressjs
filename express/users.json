@@ -1,14 +1,16 @@
 [
   {
     "email": "akash@example.com",
-    "password": "$2b$10$SgYWAntPVcx8BLWdLjqZleiK30Go3u6.G7kOYpPYSIRKLL2RfVAZi"
+    "password": "$2b$10$234/Cjpl/K3Rsbr7fwWfuO8D7ip4oMIpWz/lIoMGsF0/OgfNDfvfC"
   },
   {
     "email": "akash@example1.com",
-    "password": "$2b$10$SLzfA4/48/rc7iAshvkgm.7cAfTBgGNQnSPFUK3X0SlXM7O8PE.iO"
+    "password": "$2b$10$JUHNO/6avlGoz8EHrHcEzuMmaoJBAldHEvs80RO85PiBQZrJRNGxK"
   },
   {
-    "email": "akash@example2.com",
-    "password": "$2b$10$CZtBKjxcSwM0Uyoe4WKp5uX7kxeiJqUV2Xr/LZ08h1ziv.B8KaqIK"
+    "id": 1749215536396,
+    "username": "akash",
+    "password": "$2b$10$mL1R5n82s3ir9iCxgofRL.WLX.TFtI.fWUEvKDGAqa.5AYTssVnVC",
+    "email": "ad@gmbnail.com"
   }
 ]
