@@ -5,15 +5,25 @@ const mainroutes=require("./routes/mainRoutes")
 const adminroutes=require("./routes/adminRoutes")
 const usersroute=require("./routes/userRoutes")
 const authroutes=require("./routes/authRoutes")
+
+const router = require("./routes/mainRoutes")
+
+// Define storage config
+
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+
+
 app.use((req, res, next) => {
   console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
   next();
 });
+
+
 
 // Mount your routes
 app.use("/", mainroutes);

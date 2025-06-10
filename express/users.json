@@ -1,16 +1,9 @@
 [
   {
-    "email": "akash@example.com",
-    "password": "$2b$10$234/Cjpl/K3Rsbr7fwWfuO8D7ip4oMIpWz/lIoMGsF0/OgfNDfvfC"
-  },
-  {
-    "email": "akash@example1.com",
-    "password": "$2b$10$JUHNO/6avlGoz8EHrHcEzuMmaoJBAldHEvs80RO85PiBQZrJRNGxK"
-  },
-  {
-    "id": 1749215536396,
-    "username": "akash",
-    "password": "$2b$10$mL1R5n82s3ir9iCxgofRL.WLX.TFtI.fWUEvKDGAqa.5AYTssVnVC",
-    "email": "ad@gmbnail.com"
+    "id": 1749456478403,
+    "username": "akash123",
+    "email": "akash@exampllle.com",
+    "password": "$2b$10$1L9/mK4ixk9xECmvfT70t.h.CODW1.Xo9WcElXJ3hdAYEgCO5x4Dm",
+    "role": "admin"
   }
 ]

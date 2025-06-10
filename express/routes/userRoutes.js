@@ -1,8 +1,10 @@
 const express = require("express");
+const verifyToken = require("../middleware/middleware");
+const { verifyUser } = require("../middleware/roleMiddleware");
 const router = express.Router();
 
-router.get("/profile", (req, res) => {
-  res.send("Welcome to your user profile.");
+router.get("/profile",verifyToken,verifyUser, (req, res) => {
+  res.send(`Welcome user: ${req.user.username} to dashboard page`);
 });
 
 router.post("/update", (req, res) => {

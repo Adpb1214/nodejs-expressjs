@@ -1,8 +1,13 @@
 const express = require("express");
+const verifyToken = require("../middleware/middleware");
+const { verifyAdmin } = require("../middleware/roleMiddleware");
 const router = express.Router();
 
-router.get("/dashboard", (req, res) => {
-  res.send("Admin dashboard accessed.");
+router.get("/dashboard",verifyToken,verifyAdmin, (req, res) => {
+  res.send(`Welcome Admin: ${req.user.username} to dashboard page`);
+});
+router.get("/settings",verifyToken, (req, res) => {
+  res.send(`Welcome Admin: ${req.user.username} to settings page`);
 });
 
 router.delete("/user/:id", (req, res) => {
