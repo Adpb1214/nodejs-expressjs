@@ -2,16 +2,45 @@ const express=require("express")
 const router=express.Router();
 const multer = require("multer");
 const path = require("path");
-
+const fs=require("fs");
 // Storage config
-const storage = multer.diskStorage({
+let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/images/");
+    let folder = "uploads/others";
+
+    if (file.mimetype.startsWith("image/")) {
+      folder = "uploads/images";
+    } else if (file.mimetype === "application/pdf") {
+      folder = "uploads/docs";
+    }
+
+    // Create folder if it doesn't exist
+    if (!fs.existsSync(folder)) {
+      fs.mkdirSync(folder, { recursive: true });
+    }
+
+    cb(null, folder);
   },
+
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + "-" + Date.now() + ext);
+    const uniqueName = `${file.fieldname}-${Date.now()}${ext}`;
+    cb(null, uniqueName);
   },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 2 * 1024 * 1024 }, 
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only JPEG, PNG, and PDF files allowed"), false);
+    }
+  },
+  
 });
 
 // File filter: only allow image files
@@ -26,11 +55,11 @@ const fileFilter = (req, file, cb) => {
 };
 
 // Final multer config
-const upload = multer({
-  storage: storage,
-  fileFilter: fileFilter,
-  limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB
-});
+// const upload = multer({
+//   storage: storage,
+//   fileFilter: fileFilter,
+//   limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB
+// });
 router.get("/",(req,res)=>{
     res.send("hello this is homepage")
   })
@@ -50,14 +79,14 @@ router.get("/",(req,res)=>{
   
     res.send({
       message: "File uploaded successfully",
-      file: req.file, // contains info like filename, path, etc.
+      file: req.file,
     });
   });
   router.post("/upload-multiple", upload.array("myFiles", 5), (req, res) => {
     if (!req.files || req.files.length === 0) {
       return res.status(400).send("No files uploaded");
     }
-  
+
     res.send({
       message: "Files uploaded successfully",
       files: req.files.map((f) => ({
@@ -67,6 +96,21 @@ router.get("/",(req,res)=>{
       })),
     });
   });
+
+  router.post("/upload-with-folder", upload.array("myFiles", 5), (req, res) => {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).send("No files uploaded");
+    }
+  
+    res.json({
+      message: "Files uploaded to custom folders",
+      files: req.files.map((f) => ({
+        name: f.filename,
+        location: f.path,
+      })),
+    });
+  });
+   
   
   
   router.post("/login",(req,res)=>{

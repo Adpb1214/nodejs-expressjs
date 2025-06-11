@@ -10,11 +10,11 @@ const router = require("./routes/mainRoutes")
 
 // Define storage config
 
-
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
 
 
 
